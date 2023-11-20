@@ -1,5 +1,6 @@
 __pycache__
 .DS_Store
-data/
+original_data/
 log/
 .idea/
+model/
