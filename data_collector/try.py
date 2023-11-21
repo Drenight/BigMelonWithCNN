@@ -33,29 +33,38 @@ time.sleep(4)
 # driver.get_screenshot_as_file(path/to/figure)
 # take screenshot
 # !!! ONLY PNG format works !!!
-driver.get_screenshot_as_file(os.getcwd()+'/tryres.png')
+
+step_count = 0
+# step_count_str = '{:03d}'.format(step_count)
+
+while True:
+   step_count += 1
+   driver.get_screenshot_as_file(os.getcwd()+'/tryres'+str(step_count)+'.png')
+
+   # move the mouse to the position (15,80)
+   # 往右15往下80
+   ActionChains(driver).move_by_offset(15,80).click().perform()
+
+   # since here is the relative position, if not move back, 
+   # it will continuously apply the movement.
+   ActionChains(driver).move_by_offset(-15,-80).perform()
+
+   # sleep sometime to wait for fruits falling down
+   time.sleep(2)
 
 
-# move the mouse to the position (15,80)
-# 往右15往下80
-ActionChains(driver).move_by_offset(15,80).click().perform()
-
-# since here is the relative position, if not move back, 
-# it will continuously apply the movement.
-ActionChains(driver).move_by_offset(-15,-80).perform()
-
-# sleep sometime to wait for fruits falling down
-time.sleep(2)
+   # driver.get_screenshot_as_file(os.getcwd()+'/tryres.png')
+   step_count += 1
+   driver.get_screenshot_as_file(os.getcwd()+'/tryres'+str(step_count)+'.png')
 
 
-driver.get_screenshot_as_file(os.getcwd()+'/tryres.png')
-
-
-time.sleep(2)
-ActionChains(driver).move_by_offset(340,80).click().perform()
-ActionChains(driver).move_by_offset(-340,-80).perform()
-time.sleep(2)
-driver.get_screenshot_as_file(os.getcwd()+'/tryres2.png')
+   time.sleep(2)
+   ActionChains(driver).move_by_offset(340,80).click().perform()
+   ActionChains(driver).move_by_offset(-340,-80).perform()
+   time.sleep(2)
+   # driver.get_screenshot_as_file(os.getcwd()+'/tryres2.png')
+   step_count += 1
+   driver.get_screenshot_as_file(os.getcwd()+'/tryres'+str(step_count)+'.png')
 
 
 
