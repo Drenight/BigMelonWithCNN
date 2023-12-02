@@ -4,3 +4,10 @@
 
 ### Where to find score
 - src/project.js line 1154
+
+### TODO (2 weeks)
+- intervals, cross-entropy
+  - Done?
+- model smaller
+  - Done!
+- location preference by two distributions
