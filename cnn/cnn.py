@@ -30,6 +30,11 @@ class CustomDataset(Dataset):
 
 directory_path = "../original_data"
 file_names = os.listdir(directory_path)
+
+if os.path.isdir(file_path):
+    #TODO
+    pass
+
 image_files = [file for file in file_names if file.lower().endswith(('.png', '.jpg', '.jpeg'))]
 image_paths = [os.path.join(directory_path, file) for file in image_files]
 coordinates = [[0.01] * 100 for _ in range(len(image_paths))]  # 举例，可以根据实际情况设定坐标
