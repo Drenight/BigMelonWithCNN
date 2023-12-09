@@ -20,7 +20,8 @@ class CNNModel(nn.Module):
         self.conv3 = nn.Conv2d(16, 32, kernel_size=3, padding=1)
 
         self.fc1 = nn.Linear(32 * 135 * 240, 16)  # Adjusted size calculation
-        self.fc2 = nn.Linear(16, num_classes)  # 输出2维，分别表示x和y坐标
+        self.fc2 = nn.Linear(16, num_classes)
+        self.softmax = nn.Softmax(-1)
 
     def forward(self, x):
         x = self.pool(torch.relu(self.conv1(x)))
@@ -32,4 +33,5 @@ class CNNModel(nn.Module):
 
         x = torch.relu(self.fc1(x))
         x = self.fc2(x)
+        x = self.softmax(x)
         return x
