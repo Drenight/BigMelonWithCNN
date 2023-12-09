@@ -31,20 +31,29 @@ class CustomDataset(Dataset):
 directory_path = "../original_data"
 file_names = os.listdir(directory_path)
 
-if os.path.isdir(file_path):
-    #TODO
-    pass
+image_files = []
+for file in file_names:
+    folder_path = os.path.join(directory_path, file)
+    if os.path.isdir(folder_path):
+        files_in_folder = os.listdir(folder_path)
+        for f in files_in_folder:
+            file_path = os.path.join(folder_path, f)
+            if os.path.isfile(file_path) and f.lower().endswith(('.png', '.jpg', '.jpeg')):
+                image_files.append(file_path)
+        # print(len(image_files))
+    else:
+        # Alert
+        pass
+print(str(len(image_files)) + " images loaded!")
+# print(image_files)
+# exit()
 
-image_files = [file for file in file_names if file.lower().endswith(('.png', '.jpg', '.jpeg'))]
+# image_files = [file for file in file_names if file.lower().endswith(('.png', '.jpg', '.jpeg'))]
 image_paths = [os.path.join(directory_path, file) for file in image_files]
-coordinates = [[0.01] * 100 for _ in range(len(image_paths))]  # 举例，可以根据实际情况设定坐标
+coordinates = [15 for _ in range(len(image_paths))]
 
 image_paths = image_paths[:25]
 coordinates = coordinates[:25]
-
-# print(image_paths)
-# print(coordinates)
-# exit()
 
 transform = transforms.Compose([
     transforms.Resize((1080, 1920)),
@@ -70,6 +79,7 @@ def count_parameters(model):
     print()
 count_parameters(model)
 
+
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(model.parameters(), lr=0.0001)
 
@@ -79,10 +89,13 @@ model.to(device)
 num_epochs = 10
 for epoch in tqdm(range(num_epochs)):
     for batch_images, batch_coordinates in dataloader:
+        batch_coordinates = batch_coordinates.long()
         batch_images, batch_coordinates = batch_images.to(device), batch_coordinates.to(device)
 
         optimizer.zero_grad()
         outputs = model(batch_images)
+        # print(outputs)
+        # print(batch_coordinates)
         loss = criterion(outputs, batch_coordinates)
         loss.backward()
         optimizer.step()

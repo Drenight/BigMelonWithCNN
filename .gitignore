@@ -4,3 +4,5 @@ original_data/
 log/
 .idea/
 model/
+positive_data/
+negative_data/

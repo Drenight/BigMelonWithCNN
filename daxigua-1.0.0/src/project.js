@@ -1154,7 +1154,7 @@ window.__require = function e(t, n, o) {
                     // console.log("sasasasas");
                     //生成新水果会调这个函数
                     //a.default.score是分数，从这里搞
-                    console.log(a.default.score);
+                    // console.log(a.default.score);
                     var t = this,
                         n = cc.instantiate(this.fruitPre);
                     n.parent = this.lineNode, n.getComponent(cc.Sprite).spriteFrame = d.default.Instance.fruit[e], n.children[0].getComponent(cc.Sprite).spriteFrame = d.default.Instance.fruit[e], n.getComponent("fruitData").fruitNumber = e, n.position = this.lineNode.children[1].position, n.scale = 0, n.getComponent(cc.RigidBody).type = cc.RigidBodyType.Static, n.getComponent(cc.PhysicsCircleCollider).radius = 0, n.getComponent(cc.PhysicsCircleCollider).apply(), cc.tween(n).to(.5, {
@@ -1165,6 +1165,10 @@ window.__require = function e(t, n, o) {
                         t.targetFruit = n
                     }).start()
                 }, t.prototype.createLevelUpFruit = function(e, t) {
+                    const currentTimestamp = new Date().getTime();
+                    // 将毫秒级时间戳转换为秒级时间戳
+                    const currentUnixTimestamp = Math.floor(currentTimestamp / 1000);
+                    console.log(currentUnixTimestamp);
                     var o = cc.instantiate(this.fruitPre);
                     o.parent = this.fruitNode, o.getComponent(cc.Sprite).spriteFrame = d.default.Instance.fruit[e], o.children[0].getComponent(cc.Sprite).spriteFrame = d.default.Instance.fruit[e], o.getComponent("fruitData").fruitNumber = e, o.position = t, o.scale = 0, o.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, -100), o.getComponent(cc.PhysicsCircleCollider).radius = o.height / 2, o.getComponent(cc.PhysicsCircleCollider).apply(), cc.tween(o).to(.5, {
                         scale: 1
