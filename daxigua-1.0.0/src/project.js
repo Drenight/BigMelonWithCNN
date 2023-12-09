@@ -1151,6 +1151,10 @@ window.__require = function e(t, n, o) {
                     }
                     return e
                 }, t.prototype.createOneFruit = function(e) {
+                    // console.log("sasasasas");
+                    //生成新水果会调这个函数
+                    //a.default.score是分数，从这里搞
+                    console.log(a.default.score);
                     var t = this,
                         n = cc.instantiate(this.fruitPre);
                     n.parent = this.lineNode, n.getComponent(cc.Sprite).spriteFrame = d.default.Instance.fruit[e], n.children[0].getComponent(cc.Sprite).spriteFrame = d.default.Instance.fruit[e], n.getComponent("fruitData").fruitNumber = e, n.position = this.lineNode.children[1].position, n.scale = 0, n.getComponent(cc.RigidBody).type = cc.RigidBodyType.Static, n.getComponent(cc.PhysicsCircleCollider).radius = 0, n.getComponent(cc.PhysicsCircleCollider).apply(), cc.tween(n).to(.5, {
