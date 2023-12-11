@@ -2,6 +2,9 @@
 
 import os
 import shutil
+from cnn import cnn
+from data_collector import random_player
+import filter 
 
 def clear_folder(folder_path):
     if os.path.exists(folder_path):
@@ -20,7 +23,9 @@ clear_folder('./positive_data')
 
 ## Generate newdata until batch filled
 #TODO
+random_player.main()
+filter.main()
 
 ## Train the model
-
+cnn.main()
 ## End
