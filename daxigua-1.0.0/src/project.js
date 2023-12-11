@@ -1156,16 +1156,16 @@ window.__require = function e(t, n, o) {
                     //a.default.score是分数，从这里搞
                     // console.log(a.default.score);
 
-                    //
-                    let playerData = JSON.parse(localStorage.getItem('HCDXGate2playerData11')) || {};
-                    // 确保scores数组存在
-                    playerData.scores = playerData.scores || [];
-                    // 添加新分数到scores数组
-                    playerData.scores.push(a.default.score); // 确保 a.default.score 有最新分数值
-                    // 将更新后的玩家数据保存回localStorage
-                    localStorage.setItem('HCDXGate2playerData11', JSON.stringify(playerData));
-                    console.log(JSON.parse(localStorage.getItem('HCDXGate2playerData11')));
-                    //
+                    // //
+                    // let playerData = JSON.parse(localStorage.getItem('HCDXGate2playerData11')) || {};
+                    // // 确保scores数组存在
+                    // playerData.scores = playerData.scores || [];
+                    // // 添加新分数到scores数组
+                    // playerData.scores.push(a.default.score); // 确保 a.default.score 有最新分数值
+                    // // 将更新后的玩家数据保存回localStorage
+                    // localStorage.setItem('HCDXGate2playerData11', JSON.stringify(playerData));
+                    // console.log(JSON.parse(localStorage.getItem('HCDXGate2playerData11')));
+                    // //
 
                     var t = this,
                         n = cc.instantiate(this.fruitPre);
@@ -1178,9 +1178,23 @@ window.__require = function e(t, n, o) {
                     }).start()
                 }, t.prototype.createLevelUpFruit = function(e, t) {
                     const currentTimestamp = new Date().getTime();
-                    // 将毫秒级时间戳转换为秒级时间戳
+
+                    // // 将毫秒级时间戳转换为秒级时间戳
                     const currentUnixTimestamp = Math.floor(currentTimestamp / 1000);
                     console.log(currentUnixTimestamp);
+
+                    //
+                    let playerData = JSON.parse(localStorage.getItem('HCDXGate2playerData11')) || {};
+                    // 确保timestamps数组存在
+                    playerData.timestamps = playerData.timestamps || [];
+                    // 添加时间戳到timestamps数组
+                    playerData.timestamps.push(currentUnixTimestamp);
+                    // 将更新后的玩家数据保存回localStorage
+                    localStorage.setItem('HCDXGate2playerData11', JSON.stringify(playerData));
+                    console.log(JSON.parse(localStorage.getItem('HCDXGate2playerData11')));
+                    //
+
+
                     var o = cc.instantiate(this.fruitPre);
                     o.parent = this.fruitNode, o.getComponent(cc.Sprite).spriteFrame = d.default.Instance.fruit[e], o.children[0].getComponent(cc.Sprite).spriteFrame = d.default.Instance.fruit[e], o.getComponent("fruitData").fruitNumber = e, o.position = t, o.scale = 0, o.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, -100), o.getComponent(cc.PhysicsCircleCollider).radius = o.height / 2, o.getComponent(cc.PhysicsCircleCollider).apply(), cc.tween(o).to(.5, {
                         scale: 1
