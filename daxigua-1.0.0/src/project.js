@@ -1155,6 +1155,18 @@ window.__require = function e(t, n, o) {
                     //生成新水果会调这个函数
                     //a.default.score是分数，从这里搞
                     // console.log(a.default.score);
+
+                    //
+                    let playerData = JSON.parse(localStorage.getItem('HCDXGate2playerData11')) || {};
+                    // 确保scores数组存在
+                    playerData.scores = playerData.scores || [];
+                    // 添加新分数到scores数组
+                    playerData.scores.push(a.default.score); // 确保 a.default.score 有最新分数值
+                    // 将更新后的玩家数据保存回localStorage
+                    localStorage.setItem('HCDXGate2playerData11', JSON.stringify(playerData));
+                    console.log(JSON.parse(localStorage.getItem('HCDXGate2playerData11')));
+                    //
+
                     var t = this,
                         n = cc.instantiate(this.fruitPre);
                     n.parent = this.lineNode, n.getComponent(cc.Sprite).spriteFrame = d.default.Instance.fruit[e], n.children[0].getComponent(cc.Sprite).spriteFrame = d.default.Instance.fruit[e], n.getComponent("fruitData").fruitNumber = e, n.position = this.lineNode.children[1].position, n.scale = 0, n.getComponent(cc.RigidBody).type = cc.RigidBodyType.Static, n.getComponent(cc.PhysicsCircleCollider).radius = 0, n.getComponent(cc.PhysicsCircleCollider).apply(), cc.tween(n).to(.5, {
@@ -1206,6 +1218,7 @@ window.__require = function e(t, n, o) {
                         m.active = !1
                     })))
                 }, t.prototype.levelUpEffect = function() {
+                    console.log("2323232");
                     for (var e = 0; e < 25; e++) {
                         var t = r.default.Spawn("lightEffect", this.downEffect);
                         t.scale = .3 * Math.random() + .2, t.opacity = 210;
