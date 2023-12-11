@@ -31,6 +31,8 @@ class CustomDataset(Dataset):
 directory_path = "../original_data"
 file_names = os.listdir(directory_path)
 
+# TODO, use positive_data to train here
+# Load last time model
 image_files = []
 for file in file_names:
     folder_path = os.path.join(directory_path, file)
