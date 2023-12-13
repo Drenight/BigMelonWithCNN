@@ -18,14 +18,18 @@ def clear_folder(folder_path):
     else:
         print(f"文件夹不存在：{folder_path}")
 
-clear_folder('./original_data')
-clear_folder('./positive_data')
+i = 0
+while i<100:
+    i += 1
+    print("game ",i)
+    clear_folder('./original_data')
+    clear_folder('./positive_data')
 
-## Generate newdata until batch filled
-#TODO
-random_player.main()
-filter.main()
+    ## Generate newdata until batch filled
+    #TODO
+    random_player.main()
+    filter.main()
 
-## Train the model
-cnn.main()
-## End
+    ## Train the model
+    cnn.main()
+    ## End

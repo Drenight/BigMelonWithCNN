@@ -69,8 +69,10 @@ def main():
 
    file_path = directory_path+"/coor.json"
 
-   while step_count<100:
+   while step_count<50:
       time.sleep(5)
+      print("")
+      print("step", step_count)
       step_count += 1
       # fn_name = os.path.join(os.getcwd(), '..', 'original_data', 'play_' + str(timestamp), 'tryres' + str(step_count) + '.png')
       # fn_name = directory_path+'/'+str(step_count)+'.png'
@@ -85,12 +87,12 @@ def main():
       driver.get_screenshot_as_file(fn_name)
       ##############################
 
-      if step_count<10:
-         por1 = random.randint(0,100) 
+      if step_count<5:
+         por1 = random.randint(0,9) 
       else:
          por1 = cnn_predict.main(fn_name)
          
-      coor1 = 15 + 0.05*por1*(340-15)  #0.05 = 1/num_class
+      coor1 = 15 + 0.1*por1*(340-15)  #0.05 = 1/num_class
       # por2 = random.randint(0,100)
       # coor2 = 15 + 0.01*por2*(340-15)
       coor_json[timestamp] = por1
@@ -108,6 +110,7 @@ def main():
       ###################################
       timestamps = get_timestamps_from_local_storage(driver)
       timestamps_file_path = os.path.join(directory_path, 'timestamps.json')
+      # print(len(timestamps))
       with open(timestamps_file_path, 'w') as timestamps_file:
          json.dump(timestamps, timestamps_file)
 
@@ -126,4 +129,11 @@ def main():
       # driver.get_screenshot_as_file(fn_name)
 
    # or driver.quit() to close all the opening windows.
+   print("Total merge is",len(timestamps))
+
+   import fast_ranker
+   fast_ranker.main(len(timestamps))
+   time.sleep(10)
    driver.close()
+
+main()

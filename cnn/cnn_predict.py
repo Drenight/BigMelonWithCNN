@@ -13,7 +13,7 @@ def main(file):
         transforms.Resize((1080, 1920)),
         transforms.ToTensor(),
     ])
-    print(file)
+    # print(file)
 
     # 加载新的图片
     # new_image = Image.open('../original_data/1701557521/1.png').convert('RGB')
@@ -30,7 +30,7 @@ def main(file):
     # predicted_coordinates = predicted_coordinates.squeeze().cpu().numpy()
     max_values, max_indices = torch.max(predicted_coordinates, dim=-1)
 
-    # print("Predicted Coordinates:", predicted_coordinates)
+    print("Predicted Coordinates:", predicted_coordinates)
     # print(max_values, max_indices)
-    print(predicted_coordinates)
+    print(max_indices.tolist()[0])
     return max_indices.tolist()[0]
