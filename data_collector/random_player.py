@@ -70,7 +70,7 @@ def main():
    file_path = directory_path+"/coor.json"
 
    while step_count<50:
-      time.sleep(3)
+      time.sleep(5)
       step_count += 1
       # fn_name = os.path.join(os.getcwd(), '..', 'original_data', 'play_' + str(timestamp), 'tryres' + str(step_count) + '.png')
       # fn_name = directory_path+'/'+str(step_count)+'.png'
@@ -85,9 +85,9 @@ def main():
       driver.get_screenshot_as_file(fn_name)
       ##############################
 
-      por1 = random.randint(0,19) 
+      por1 = random.randint(0,9) 
          
-      coor1 = 15 + 0.05*por1*(340-15)  #0.05 = 1/num_class
+      coor1 = 15 + 0.1*por1*(340-15)  #0.05 = 1/num_class
       # por2 = random.randint(0,100)
       # coor2 = 15 + 0.01*por2*(340-15)
       coor_json[timestamp] = por1
@@ -123,4 +123,9 @@ def main():
       # driver.get_screenshot_as_file(fn_name)
 
    # or driver.quit() to close all the opening windows.
+   log_file_path = './random_baseline.log'
+   with open(log_file_path, 'a') as log_file:
+      # 将总合并值写入日志文件
+      log_file.write(f'{len(timestamps)}\n')
+   print("Total merge is",len(timestamps))
    driver.close()

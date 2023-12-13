@@ -6,6 +6,8 @@ def main():
     # 设置原始数据文件夹和目标文件夹路径
     root_original_data_folder = './original_data'
     positive_data_folder = './positive_data'
+    # backup_positive = './backup_positive'
+    backup_positive = './backup_positive_10slots'
 
     # 确保positive_data文件夹存在
     os.makedirs(positive_data_folder, exist_ok=True)
@@ -51,9 +53,11 @@ def main():
                         # 构建完整的图片路径和目标路径
                         image_path = os.path.join(original_data_folder, corresponding_image)
                         target_path = os.path.join(positive_data_folder, new_image_name)
+                        target_path2 = os.path.join(backup_positive, new_image_name)
                         # 复制并重命名图片到positive_data文件夹
                         shutil.copy2(image_path, target_path)
-                        print(f"Copied and renamed '{corresponding_image}' to '{new_image_name}' in positive_data folder.")
+                        shutil.copy2(image_path, target_path2)
+                        # print(f"Copied and renamed '{corresponding_image}' to '{new_image_name}' in positive_data folder.")
                     else:
                         print(f"No coordinate value found for image {corresponding_image} in coor.json.")
                 else:

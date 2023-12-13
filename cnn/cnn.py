@@ -39,7 +39,9 @@ class CustomDataset(Dataset):
         return image, coordinates
 
 def main():
-    directory_path = "./positive_data"
+    # directory_path = "./positive_data"
+    # directory_path = "./backup_positive"
+    directory_path = "./backup_positive_10slots"
     file_names = os.listdir(directory_path)
 
     image_paths = []
@@ -51,7 +53,7 @@ def main():
         parts = f.split('_')[-1]
         # 提取下划线后面点前面的部分
         coor = parts.split('.')[0]
-        print(f)
+        # print(f)
         coordinates.append(int(coor))
     
     # print(image_paths)
@@ -91,8 +93,8 @@ def main():
     model.to(device)
 
     num_epochs = 10
-    for epoch in tqdm(range(num_epochs)):
-        for batch_images, batch_coordinates in dataloader:
+    for epoch in range(num_epochs):
+        for batch_images, batch_coordinates in tqdm(dataloader):
             batch_coordinates = batch_coordinates.long()
 
             # print(batch_images[1])
@@ -119,7 +121,5 @@ def main():
         print(f'Epoch [{epoch + 1}/{num_epochs}], Loss: {loss.item()}')
 
     torch.save(model.state_dict(), './model/model.pth')
-
-    exit()
 
 

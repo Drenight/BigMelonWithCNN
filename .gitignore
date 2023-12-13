@@ -6,3 +6,6 @@ log/
 model/
 positive_data/
 negative_data/
+backup_positive/
+random_baseline.log
+backup_positive_10slots/

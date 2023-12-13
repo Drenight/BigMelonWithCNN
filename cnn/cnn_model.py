@@ -8,7 +8,7 @@ from PIL import Image
 from tqdm import tqdm
 import torch.nn.init as init
 
-num_classes = 20
+num_classes = 10
 
 # 定义CNN模型类
 class CNNModel(nn.Module):
